@@ -228,5 +228,4 @@ playAgain.onclick = function() {
   }
  //when user clicks EXIT, the window closes. 
 
- //shuffle not working, somehow I will need to change/append the html after the list is shuffled. 
- 
+
