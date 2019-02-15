@@ -19,7 +19,7 @@ The game template was provided by Udacity and I was required to add functionalit
 
 To get started, open `index.html`. New window will open.
 
-There are sixteen cards in your table with eight identical pair. Match the pairs by clikcing on the cards. Invite your friends and compare ratings and time. 
+There are sixteen cards in your table with eight identical pair. Match the pairs by clicking on the cards. Invite your friends and compare ratings and time. 
 
 
 ## Game rules
