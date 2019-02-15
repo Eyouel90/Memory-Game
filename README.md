@@ -5,8 +5,8 @@ Udacity's FEND Nanodegree Memory Game Project by Eyouel Bekele
 ## Table of Contents
 
 * [About](#about)
-* [How To Play](#How To Play)
-* [Game Rules](#Game Rules)
+* [How To Play](#HowToPlay)
+* [Game Rules](#GameRules)
 * [Credits](#credits)
 
 ## About
