@@ -23,12 +23,12 @@
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const cards= document.querySelectorAll('.card');
-const cardList=Array.from(cards);
+let cards= document.querySelectorAll('.card');
 const time=document.querySelectorAll('.time')[0];
 const ready=document.querySelectorAll('.ready')[0];
 const playAgain=document.querySelectorAll('.play-again')[0];
 const exit=document.querySelectorAll('.exit')[0];
+let deck= document.querySelector('.deck');
 let openCards= [];
 let clickCounter = 0;
 let moves=0;
@@ -39,54 +39,40 @@ let modal2=document.getElementById('endModal');
 let finalMoves=document.getElementById('finalMoves');
 let finalTime= document.getElementById('timer-result');
 let btn = document.getElementById("myBtn");
+let cardList = Array.from(document.querySelectorAll('.deck li'));
 
 
 
 
-
-
-function shuffle(array) {
-    let currentIndex = array.length,
-        temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-
-}
-
-
+//game logic.
+//when card is clicked, it flips. 
 cards.forEach(function(card){ 
     
     card.addEventListener('click', function(reveal){
         if (!card.classList.contains('show') ||!card.classList.contains('open')){
+        //first it checks if the card is not already flipped
         card.classList.add('open','show');
         openCards.push(card);
-        console.log(openCards);
         rating();
-        
+        //Every click is also counted against the rating
         
         
     if(openCards.length == 2){
         counter();
+        //when two cards are open, the move counter ++1
        if (openCards[0].innerHTML == openCards[1].innerHTML){
             openCards[0].classList.add('match');
             openCards[1].classList.add('match');
             console.log('matching cards');
             matchedCards.push('openCards[0]','openCards[1]');
             //console.log(matchedCards);
-            if(matchedCards.length===2){
+            if(matchedCards.length===16){
+                //once user matches all 16 cards, game is won
                 gameEnding();
                 stopTimer();
                 
             }
-            openCards.splice(0,1);
+            openCards=[];
         }
         else ( setTimeout(function()
             {openCards[0].classList.remove('open','show');
@@ -101,13 +87,12 @@ cards.forEach(function(card){
 })
 
 
-
+// reset(), reloads the page and shuffles the deck. 
  function reset(){
 
     //console.log(matchedCards)
     location.reload();
-    shuffle(cardList);
-    
+    gameStart();
     console.log(openCards);
     
     
@@ -115,9 +100,9 @@ cards.forEach(function(card){
     
     
 };
-    
 
-    function shuffle(array) {
+
+function shuffle(array) {
         let currentIndex = array.length,
             temporaryValue, randomIndex;
     
@@ -132,8 +117,20 @@ cards.forEach(function(card){
         return array;
     }
 
+function gameStart(){
 
 
+    let cardsShuffled = shuffle(cardList);
+    //console.log(cardsShuffled);
+    console.log(deck);
+    for(card of cardsShuffled){
+    deck.appendChild(card);}
+        //shuffles the cards and appends each card item to existing deck
+    
+
+}
+
+   
 function counter(){
     moves++;
     movesCounter.innerHTML= moves;
@@ -144,6 +141,7 @@ function counter(){
 }
 
 function rating(){
+    //as the user is clicking, rating() uses the number of click to determine the stars displayed
 
     if (moves > 10){
         document.getElementsByClassName("fa fa-star")[2].style.display = 'none';
@@ -190,14 +188,19 @@ function stopTimer(){
 }
 //my modals
 
+// first modal when the page is opened. 
+
 window.onload= function() {
     modal.style.display = "block";
+    gameStart();
+    
   }
   
  
   ready.onclick = function() {
     modal.style.display = "none";
     timer();
+    // when user click on the ready button clock starts. 
   }
   
   window.onclick = function(event) {
@@ -206,6 +209,7 @@ window.onload= function() {
     }
   }
 
+  //second modal when all cards are matched., 
 function gameEnding(){
     modal2.style.display = "block";
     
@@ -215,14 +219,14 @@ function gameEnding(){
 playAgain.onclick = function() {
     modal2.style.display = "none";
     reset();
+    //when user press playagain button, game restarts. 
   }
+
 
   exit.onclick = function() {
     close()
   }
+ //when user clicks EXIT, the window closes. 
+
+ //shuffle not working, somehow I will need to change/append the html after the list is shuffled. 
  
- 
-//everything is done. 
-//clean up the code. 
-//the only major step is to use the shuffle method for shuffling the card everythime it is refreshed. and stars still not showing up at last popup 
-//submit tomororw//
