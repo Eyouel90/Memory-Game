@@ -13,11 +13,13 @@ Udacity's FEND Nanodegree Memory Game Project by Eyouel Bekele
 
 The game template was provided by Udacity and I was required to add functionality. Starting from static HTML and CSS the game is transformed to interactive program, everyone can enjoy.
 
+HTMl: 'index.html'
+CSS: 'CSS/'
+JS: 'JS/'
+
 
 
 ## How to Play
-
-To get started, open `index.html`. New window will open.
 
 There are sixteen cards in your table with eight identical pair. Match the pairs by clicking on the cards. Invite your friends and compare ratings and time. 
 
